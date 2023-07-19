@@ -1,5 +1,5 @@
 <?php
-require_once('conn.php');
+require_once('../conn.php');
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Assuming you already established the database connection somewhere else
@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     mysqli_stmt_execute($query);
 
     // Redirect back to the main page or any other desired page
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }
 ?>

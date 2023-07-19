@@ -1,13 +1,14 @@
 <?php
 require_once('conn.php');
-
-
+// Starting the session
 session_start();
+
 $userid = $_SESSION['userid'];
 $phd = "";
 
-
+//check if user already login
 if ($userid == null) {
+    //if user not loged in, trow into login page
     header("Location: pages/login.php");
 } else {
     // Assuming you already established the database connection somewhere else
@@ -32,28 +33,15 @@ if ($userid == null) {
                     <td><button type="button" class="btn btn-primary" name="edit">Edit</button><button type="button" class="btn btn-danger" name="delete">Delete</button></td>
                     
                 </tr>';
-
+        // inserting data into it
         $phd .= $txt;
     }
-
-
 
     if (isset($_POST['logout'])) {
         session_destroy();
         header("Location: pages/login.php");
     }
 }
-
-function console_log($data)
-{
-    echo '<script>';
-    echo 'console.log(' . json_encode($data) . ')';
-    echo '</script>';
-}
-
-
-
-
 ?>
 
 
@@ -145,7 +133,7 @@ function console_log($data)
                 // Create a hidden form and submit it to the edit_item.php script
                 var form = document.createElement("form");
                 form.method = "post";
-                form.action = "edit_item.php";
+                form.action = "pages/edit_item.php";
                 form.style.display = "none";
 
                 var itemIdInput = document.createElement("input");
@@ -187,7 +175,7 @@ function console_log($data)
                 // Create a hidden form and submit it to the delete_item.php script
                 var form = document.createElement("form");
                 form.method = "post";
-                form.action = "delete_item.php";
+                form.action = "pages/delete_item.php";
                 form.style.display = "none";
 
                 var itemIdInput = document.createElement("input");
